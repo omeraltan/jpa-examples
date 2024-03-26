@@ -1,2 +1,2 @@
-# jpa-examples
+# jpa-studies
 JPA Examples
