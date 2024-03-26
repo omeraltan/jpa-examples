@@ -1,2 +1,2 @@
 # jpa-studies
-JPA Examples
+JPA Studies
