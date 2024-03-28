@@ -1,11 +1,13 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Employee_New_Name")
+//@Table(name = "Employee_New_Name")
 public class Employee {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,8 +51,15 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "ps_id", unique = true)
-
     private ParkingSpace parkingSpace;
+
+    @OneToMany
+    //@JoinTable(name = "EMP_PHN", joinColumns = @JoinColumn(name = "EMP_ID"),inverseJoinColumns = @JoinColumn(name = "PHN_ID"))
+    @JoinColumn(name = "EMP_ID")
+    private List<Phone> phones = new ArrayList<>();
+
+    @ManyToMany
+    private List<Project> projects = new ArrayList<>();
 
     public Employee() {
     }
@@ -132,6 +141,22 @@ public class Employee {
 
     public void setParkingSpace(ParkingSpace parkingSpace) {
         this.parkingSpace = parkingSpace;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

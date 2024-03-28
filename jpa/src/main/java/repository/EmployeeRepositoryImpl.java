@@ -1,8 +1,6 @@
 package repository;
 
-import domain.Department;
-import domain.Employee;
-import domain.ParkingSpace;
+import domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -35,6 +33,22 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         entityManager.persist(parkingSpace);
+        transaction.commit();
+    }
+
+    @Override
+    public void insertPhone(Phone phone) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(phone);
+        transaction.commit();
+    }
+
+    @Override
+    public void insertProject(Project project) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(project);
         transaction.commit();
     }
 }

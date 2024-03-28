@@ -1,15 +1,17 @@
 package test;
 
 import domain.Employee;
-import domain.ParkingSpace;
+import domain.Phone;
 import repository.EmployeeRepository;
 import repository.EmployeeRepositoryImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Arrays;
+import java.util.List;
 
-public class EmployeeTest2 {
+public class EmployeeTest4 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("EmployeePersistenceUnit");
         EntityManager entityManager = emf.createEntityManager();
@@ -20,16 +22,20 @@ public class EmployeeTest2 {
         employee.setSurname("Güllü");
         employee.setSalary(5000);
 
-        ParkingSpace parkingSpace = new ParkingSpace();
-        parkingSpace.setFlat(-1);
-        parkingSpace.setLocation("A-10");
+        Phone phone1 = new Phone("555588","MOBILE");
+        Phone phone2 = new Phone("216200","HOME");
+        Phone phone3 = new Phone("216100","WORK");
 
-        parkingSpace.setEmployee(employee);
-        repository.insertParkingSpace(parkingSpace);
+        repository.insertPhone(phone1);
+        repository.insertPhone(phone2);
+        repository.insertPhone(phone3);
 
-        employee.setParkingSpace(parkingSpace);
+        employee.getPhones().add(phone1);
+        employee.getPhones().add(phone2);
+        employee.getPhones().add(phone3);
+
+        List<Phone> phones = Arrays.asList(phone1,phone2,phone3);
+
         repository.save(employee);
-
-
     }
 }
