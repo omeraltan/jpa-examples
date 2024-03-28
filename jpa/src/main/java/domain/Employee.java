@@ -16,9 +16,12 @@ public class Employee {
     // SEQUENCE tablosu oluşur.
     // ROW/RECORD -> SEQ_GEN_TABLE
 
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     // MYSQL'de Sequence kavramı yerine AUTO_INCREMENT kavramı vardır.
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @TableGenerator(name = "EMP_GEN")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "EMP_GEN")
+    //@TableGenerator(name = "EMP_GEN_DETAILED", table = "KEY_GEN", pkColumnName = "ID_NAME", valueColumnName = "COUNT", initialValue = 1000)
+    //@GeneratedValue(generator = "EMP_GEN_DETAILED")
     @Column(name="emp_id")
     private int id;
     @Column(name = "emp_name")
@@ -37,6 +40,16 @@ public class Employee {
     @Column(name = "emp_image")
     @Lob
     private byte[] image;
+    // Many -> Employee
+    // One  -> Department
+    @ManyToOne
+    @JoinColumn(name = "dept_id")
+    private Department department;
+
+    @OneToOne
+    @JoinColumn(name = "ps_id", unique = true)
+
+    private ParkingSpace parkingSpace;
 
     public Employee() {
     }
@@ -102,6 +115,22 @@ public class Employee {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public ParkingSpace getParkingSpace() {
+        return parkingSpace;
+    }
+
+    public void setParkingSpace(ParkingSpace parkingSpace) {
+        this.parkingSpace = parkingSpace;
     }
 
     @Override

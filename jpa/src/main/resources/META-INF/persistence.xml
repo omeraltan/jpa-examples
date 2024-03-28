@@ -4,7 +4,8 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
     <persistence-unit name="EmployeePersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <class>domain.Employee</class>
-
+        <class>domain.Department</class>
+        <class>domain.ParkingSpace</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa.schema?serverTimezone=UTC"/>
