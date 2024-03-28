@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -141,6 +142,9 @@ public class Employee {
             ", surname='" + surname + '\'' +
             ", salary=" + salary +
             ", employeeType=" + employeeType +
+            ", startDate=" + startDate +
+            ", image=" + Arrays.toString(image) +
+            ", department=" + department +
             '}';
     }
 }

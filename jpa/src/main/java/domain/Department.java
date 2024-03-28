@@ -14,6 +14,9 @@ public class Department {
     private int id;
     @Column(name = "deptName")
     private String deptName;
+    // 1 Department N tane çalışanı olabilir.
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
     public int getId() {
         return id;
@@ -29,5 +32,13 @@ public class Department {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }
