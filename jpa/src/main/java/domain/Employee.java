@@ -5,6 +5,11 @@ import java.util.*;
 
 @Entity
 //@Table(name = "Employee_New_Name")
+@NamedQuery(name = "Employee.findAllEmployees", query = "SELECT e FROM Employee e")
+@NamedQueries({
+    @NamedQuery(name = "Employee.findById", query = "select e from Employee e where e.id = :paramId"),
+    @NamedQuery(name = "Employee.findByName", query = "select e from Employee e where e.name = :name")
+})
 public class Employee {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
