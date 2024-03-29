@@ -1,10 +1,7 @@
 package domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 //@Table(name = "Employee_New_Name")
@@ -59,7 +56,18 @@ public class Employee {
     private List<Phone> phones = new ArrayList<>();
 
     @ManyToMany
+    // ManyToMany İlişkide ayrı bir tablo olmak zorundadır.
+    @JoinTable(name = "EMP_PR", joinColumns = @JoinColumn(name = "EMP_ID"), inverseJoinColumns = @JoinColumn(name = "PR_ID"))
     private List<Project> projects = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "EMP_EMAILS", joinColumns = @JoinColumn(name = "EMP_ID"))
+    @Column(name = "EMAIL_ADDRESS")
+    private List<String> emails;
+    @ElementCollection
+    @CollectionTable(name = "EMP_PHN_MAP", joinColumns = @JoinColumn(name = "EMP_ID"))
+    @MapKeyColumn(name = "PHN_TYPE")
+    @Column(name = "PHN_NUM")
+    private Map<String,String> phoneNumbers;
 
     public Employee() {
     }
@@ -157,6 +165,22 @@ public class Employee {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public List<String> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
+    }
+
+    public Map<String, String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(Map<String, String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
     @Override
