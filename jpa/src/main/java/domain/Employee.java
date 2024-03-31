@@ -73,6 +73,9 @@ public class Employee {
     @MapKeyColumn(name = "PHN_TYPE")
     @Column(name = "PHN_NUM")
     private Map<String,String> phoneNumbers;
+    @OneToOne
+    @JoinColumn(name = "adr_id", unique = true)
+    private Address address;
 
     public Employee() {
     }
@@ -188,6 +191,14 @@ public class Employee {
         this.phoneNumbers = phoneNumbers;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -199,6 +210,12 @@ public class Employee {
             ", startDate=" + startDate +
             ", image=" + Arrays.toString(image) +
             ", department=" + department +
+            ", parkingSpace=" + parkingSpace +
+            ", phones=" + phones +
+            ", projects=" + projects +
+            ", emails=" + emails +
+            ", phoneNumbers=" + phoneNumbers +
+            ", address=" + address +
             '}';
     }
 }

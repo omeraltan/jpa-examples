@@ -8,6 +8,7 @@
         <class>domain.ParkingSpace</class>
         <class>domain.Phone</class>
         <class>domain.Project</class>
+        <class>domain.Address</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa.schema?serverTimezone=UTC"/>

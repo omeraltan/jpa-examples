@@ -17,6 +17,13 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
+    public Department() {
+    }
+
+    public Department(String deptName) {
+        this.deptName = deptName;
+    }
+
     public int getId() {
         return id;
     }
